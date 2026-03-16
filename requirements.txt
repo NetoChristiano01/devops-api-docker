@@ -1,2 +1,5 @@
 flask
+<<<<<<< HEAD
 psycopg2-binary
+=======
+>>>>>>> b006571910c1276587d0dc4eec25479aa08acbd9

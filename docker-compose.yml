@@ -5,6 +5,7 @@ services:
     build: .
     ports:
       - "5000:5000"
+<<<<<<< HEAD
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000"]
@@ -17,3 +18,5 @@ services:
 
 volumes:
   app_data:
+=======
+>>>>>>> b006571910c1276587d0dc4eec25479aa08acbd9
