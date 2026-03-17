@@ -1,22 +1,40 @@
-version: "3"
+version: '3.8'
 
 services:
+
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_DB: devopsdb
+      POSTGRES_USER: devops
+      POSTGRES_PASSWORD: devops123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
   api:
     build: .
+    container_name: devops-api
+    depends_on:
+      - postgres
     ports:
-      - "5000:5000"
-<<<<<<< HEAD
+      - "8080:8080"
+
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: devopsdb
+      DB_USER: devops
+      DB_PASSWORD: devops123
 
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 30s
       timeout: 10s
-      retries: 3
-
-    volumes:
-      - app_data:/app/data
+      retries: 5
 
 volumes:
-  app_data:
-=======
->>>>>>> b006571910c1276587d0dc4eec25479aa08acbd9
+  postgres_data:
